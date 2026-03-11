@@ -82,9 +82,9 @@ h6 {
 }
 
 .glass {
-  background: rgba(36, 36, 36, 0.8);
+  /* background: rgba(36, 36, 36, 0.8); */
   backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .light .glass {
