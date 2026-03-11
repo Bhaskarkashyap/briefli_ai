@@ -111,13 +111,10 @@ export function Sidebar() {
       </nav>
 
       <div className="p-3 border-t border-[var(--border)]">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs text-[var(--text-muted)]">Theme</span>
-          <ThemeToggle />
-        </div>
+      
         <button
           onClick={() => signOut({ callbackUrl: "/" })}
-          className="flex items-center gap-3 px-3 py-2 rounded-lg text-[var(--text-secondary)] hover:bg-red-500/10 hover:text-red-500 w-full transition-all group"
+          className="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary bg-red-500/10 hover:text-red-500 w-full transition-all group justify-center cursor-pointer"
         >
           <LogOut className="w-4 h-4" />
           <span className="text-sm">Sign Out</span>

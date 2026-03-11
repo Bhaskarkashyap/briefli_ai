@@ -13,6 +13,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { Summary } from "@prisma/client";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 async function getUserUsage(userId: string) {
   const user = await prisma.user.findUnique({
@@ -68,7 +69,8 @@ export default async function DashboardPage() {
             Here&apos;s what&apos;s happening with your summaries today
           </p>
         </div>
-        <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${
+        <div className="flex gap-x-5 items-center justify-center">
+          <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${
           isPro 
             ? "bg-gradient-to-r from-rose-500/20 to-pink-500/20 border border-rose-500/30" 
             : "bg-[var(--bg-tertiary)] border border-[var(--border)]"
@@ -84,6 +86,10 @@ export default async function DashboardPage() {
               <span className="text-sm font-medium">Free Plan</span>
             </>
           )}
+        </div>
+            <div className="flex items-center justify-between">
+          <ThemeToggle />
+        </div>
         </div>
       </div>
 
