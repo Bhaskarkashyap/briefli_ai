@@ -3,6 +3,7 @@ import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { SessionProvider } from "next-auth/react";
+import LoadingBar from "@/components/ui/LoadingBar";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${outfit.variable} ${inter.variable}`}>
+        <LoadingBar />
         <SessionProvider>
           <ThemeProvider>{children}</ThemeProvider>
         </SessionProvider>
