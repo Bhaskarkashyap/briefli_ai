@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 export async function POST(req: NextRequest) {
   try {
@@ -46,7 +44,7 @@ export async function POST(req: NextRequest) {
     }
 
     const isPro = user.subscription === "pro";
-    const dailyLimit = isPro ? 0 : 3;
+    const dailyLimit = isPro ? 999 : 3;
 
     if (!isPro && user.dailyUsage >= dailyLimit) {
       return NextResponse.json(
@@ -65,26 +63,26 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const style = mode === "bullet" ? "bullet points" : "paragraph format";
-    
-    const prompt = `Summarize the following text in ${style}. Make it concise and capture the main points:\n\n${text}`;
+    let prompt;
+    if (mode === "bullet") {
+      prompt = `Summarize the following text into bullet points. Make it concise and capture the main points:\n\n${text}`;
+    } else if (mode === "detailed") {
+      prompt = `Summarize the following text in detail. Provide a comprehensive summary while keeping it focused on key points:\n\n${text}`;
+    } else {
+      prompt = `Summarize the following text concisely in paragraph format. Capture the main points:\n\n${text}`;
+    }
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: "You are an expert at summarizing content. Provide clear, accurate summaries.",
-        },
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-      max_tokens: 1000,
-    });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    const summary = completion.choices[0]?.message?.content || "Failed to generate summary";
+    const result = await model.generateContent(prompt);
+    const summary = result.response.text();
+
+    if (!summary || summary.trim().length === 0) {
+      return NextResponse.json(
+        { error: "Failed to generate summary" },
+        { status: 500 }
+      );
+    }
 
     await prisma.user.update({
       where: { id: session.user.id },
@@ -107,13 +105,6 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     console.error("Summarization error:", error);
     
-    if (error.code === "insufficient_quota") {
-      return NextResponse.json(
-        { error: "AI service temporarily unavailable" },
-        { status: 503 }
-      );
-    }
-
     return NextResponse.json(
       { error: "Failed to generate summary" },
       { status: 500 }

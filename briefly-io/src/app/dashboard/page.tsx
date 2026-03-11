@@ -2,7 +2,16 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { UsageMeter } from "@/components/dashboard/UsageMeter";
 import Link from "next/link";
-import { Scissors, FileText, Clock } from "lucide-react";
+import { 
+  Scissors, 
+  FileText, 
+  Clock, 
+  TrendingUp, 
+  Zap, 
+  Crown,
+  ArrowRight,
+  Sparkles
+} from "lucide-react";
 import { Summary } from "@prisma/client";
 
 async function getUserUsage(userId: string) {
@@ -21,148 +30,256 @@ async function getRecentSummaries(userId: string): Promise<Summary[]> {
   return summaries;
 }
 
+async function getTotalStats(userId: string) {
+  const [totalSummaries, totalWords] = await Promise.all([
+    prisma.summary.count({ where: { userId } }),
+    prisma.summary.aggregate({
+      where: { userId },
+      _sum: { wordCount: true },
+    }),
+  ]);
+  return { totalSummaries, totalWords: totalWords._sum.wordCount || 0 };
+}
+
 export default async function DashboardPage() {
   const session = await auth();
   if (!session?.user?.id) return null;
 
   const user = await getUserUsage(session.user.id);
   const recentSummaries = await getRecentSummaries(session.user.id);
+  const stats = await getTotalStats(session.user.id);
 
   const isPro = user?.subscription === "pro";
-  const dailyLimit = isPro ? 0 : 3;
+  const dailyLimit = isPro ? 999 : 3;
   const used = user?.dailyUsage || 0;
+  const timeSaved = Math.floor((stats.totalSummaries * 5));
 
   return (
-    <div>
-      <div className="mb-8">
-        <h1
-          className="text-3xl font-bold mb-2"
-          style={{ fontFamily: "var(--font-outfit)" }}
-        >
-          Welcome back, {user?.name || "User"}!
-        </h1>
-        <p className="text-[var(--text-secondary)]">
-          Here&apos;s your usage overview
-        </p>
+    <div className="space-y-8">
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 
+            className="text-3xl font-bold mb-2" 
+            style={{ fontFamily: "var(--font-outfit)" }}
+          >
+            Welcome back, {user?.name?.split(" ")[0] || "User"}!
+          </h1>
+          <p className="text-[var(--text-secondary)]">
+            Here&apos;s what&apos;s happening with your summaries today
+          </p>
+        </div>
+        <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${
+          isPro 
+            ? "bg-gradient-to-r from-rose-500/20 to-pink-500/20 border border-rose-500/30" 
+            : "bg-[var(--bg-tertiary)] border border-[var(--border)]"
+        }`}>
+          {isPro ? (
+            <>
+              <Crown className="w-4 h-4 text-rose-500" />
+              <span className="text-sm font-medium text-rose-500">Pro Member</span>
+            </>
+          ) : (
+            <>
+              <Zap className="w-4 h-4 text-[var(--accent-primary)]" />
+              <span className="text-sm font-medium">Free Plan</span>
+            </>
+          )}
+        </div>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6 mb-8">
-        <div className="lg:col-span-2">
+      <div className="grid lg:grid-cols-4 gap-6">
+        <div className="lg:col-span-3">
           <UsageMeter
             used={used}
             limit={dailyLimit}
             label="Daily Summaries"
           />
         </div>
-        <div className="card p-6 flex items-center justify-between">
+        
+        <div className="card p-6 flex flex-col justify-between bg-gradient-to-br from-[var(--bg-secondary)] to-[var(--bg-tertiary)]">
           <div>
             <p className="text-[var(--text-secondary)] text-sm mb-1">
-              Current Plan
+              {isPro ? "Pro Features Active" : "Current Plan"}
             </p>
-            <p
+            <p 
               className="text-2xl font-bold"
               style={{ fontFamily: "var(--font-outfit)" }}
             >
-              {isPro ? "Pro" : "Free"}
+              {isPro ? "Unlimited" : "Free"}
             </p>
           </div>
           {!isPro && (
-            <Link href="/dashboard/settings?upgrade=true" className="btn-primary">
+            <Link 
+              href="/pricing" 
+              className="mt-4 btn-primary text-center flex items-center justify-center gap-2"
+            >
+              <Crown className="w-4 h-4" />
               Upgrade
             </Link>
           )}
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6 mb-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link
           href="/dashboard/tools"
-          className="card p-6 hover:border-[var(--accent-primary)] transition group"
+          className="card p-5 hover:border-[var(--accent-primary)] transition-all group relative overflow-hidden"
         >
-          <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4 group-hover:scale-110 transition">
-            <Scissors className="w-6 h-6 text-white" />
+          <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--accent-primary)]/5 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform" />
+          <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mb-4 group-hover:scale-110 transition-all">
+            <Sparkles className="w-6 h-6 text-white" />
           </div>
-          <h3
-            className="text-lg font-semibold mb-2"
-            style={{ fontFamily: "var(--font-outfit)" }}
-          >
+          <h3 className="text-lg font-semibold mb-1">
             New Summary
           </h3>
           <p className="text-[var(--text-secondary)] text-sm">
-            Create a new AI-powered summary
+            Create AI-powered summary
           </p>
         </Link>
 
-        <div className="card p-6">
-          <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
-            <FileText className="w-6 h-6 text-white" />
+        <div className="card p-5">
+          <div className="w-12 h-12 rounded-xl bg-[var(--bg-tertiary)] flex items-center justify-center mb-4">
+            <FileText className="w-6 h-6 text-[var(--accent-primary)]" />
           </div>
-          <h3
-            className="text-lg font-semibold mb-2"
-            style={{ fontFamily: "var(--font-outfit)" }}
-          >
-            Total Summaries
-          </h3>
-          <p className="text-2xl font-bold">{recentSummaries.length}</p>
+          <p className="text-[var(--text-secondary)] text-sm mb-1">Total Summaries</p>
+          <p className="text-2xl font-bold">{stats.totalSummaries}</p>
+          <div className="flex items-center gap-1 mt-2 text-rose-500 text-xs">
+            <TrendingUp className="w-3 h-3" />
+            <span>All time</span>
+          </div>
         </div>
 
-        <div className="card p-6">
-          <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
-            <Clock className="w-6 h-6 text-white" />
+        <div className="card p-5">
+          <div className="w-12 h-12 rounded-xl bg-[var(--bg-tertiary)] flex items-center justify-center mb-4">
+            <Clock className="w-6 h-6 text-blue-500" />
           </div>
-          <h3
-            className="text-lg font-semibold mb-2"
-            style={{ fontFamily: "var(--font-outfit)" }}
-          >
-            Time Saved
-          </h3>
+          <p className="text-[var(--text-secondary)] text-sm mb-1">Time Saved</p>
           <p className="text-2xl font-bold">
-            {Math.floor((recentSummaries.length * 5) / 60)}h{" "}
-            {(recentSummaries.length * 5) % 60}m
+            {timeSaved >= 60 ? `${Math.floor(timeSaved / 60)}h` : `${timeSaved}m`}
           </p>
+          <p className="text-[var(--text-muted)] text-xs mt-2">Reading time</p>
+        </div>
+
+        <div className="card p-5">
+          <div className="w-12 h-12 rounded-xl bg-[var(--bg-tertiary)] flex items-center justify-center mb-4">
+            <Scissors className="w-6 h-6 text-rose-500" />
+          </div>
+          <p className="text-[var(--text-secondary)] text-sm mb-1">Words Processed</p>
+          <p className="text-2xl font-bold">
+            {stats.totalWords.toLocaleString()}
+          </p>
+          <p className="text-[var(--text-muted)] text-xs mt-2">Total</p>
         </div>
       </div>
 
-      <div className="card p-6">
-        <h3
-          className="text-lg font-semibold mb-4"
-          style={{ fontFamily: "var(--font-outfit)" }}
-        >
-          Recent Activity
-        </h3>
-        {recentSummaries.length > 0 ? (
-          <div className="space-y-3">
-            {recentSummaries.map((summary) => (
-              <div
-                key={summary.id}
-                className="flex items-center justify-between py-3 border-b border-[var(--border)] last:border-0"
+      <div className="grid lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 card p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-semibold" style={{ fontFamily: "var(--font-outfit)" }}>
+              Recent Activity
+            </h3>
+            {recentSummaries.length > 0 && (
+              <Link 
+                href="/dashboard/tools" 
+                className="text-sm text-[var(--accent-primary)] hover:underline flex items-center gap-1"
               >
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm truncate">
-                    {summary.inputText.substring(0, 50)}...
-                  </p>
-                  <p className="text-xs text-[var(--text-muted)]">
-                    {new Date(summary.createdAt).toLocaleDateString()} •{" "}
-                    {summary.mode}
-                  </p>
-                </div>
-                <span className="text-sm text-[var(--text-secondary)] ml-4">
-                  {summary.wordCount} words
-                </span>
-              </div>
-            ))}
+                View all <ArrowRight className="w-4 h-4" />
+              </Link>
+            )}
           </div>
-        ) : (
-          <p className="text-[var(--text-secondary)] text-center py-8">
-            No summaries yet.{" "}
-            <Link
-              href="/dashboard/tools"
-              className="text-[var(--accent-primary)] hover:underline"
-            >
-              Create your first one!
-            </Link>
-          </p>
-        )}
+          
+          {recentSummaries.length > 0 ? (
+            <div className="space-y-1">
+              {recentSummaries.map((summary, index) => (
+                <div
+                  key={summary.id}
+                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-[var(--bg-tertiary)] transition"
+                >
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                    index === 0 ? "gradient-bg" : "bg-[var(--bg-tertiary)]"
+                  }`}>
+                    {index === 0 ? (
+                      <Sparkles className="w-5 h-5 text-white" />
+                    ) : (
+                      <FileText className="w-5 h-5 text-[var(--text-secondary)]" />
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium truncate">
+                      {summary.mode.charAt(0).toUpperCase() + summary.mode.slice(1)} Summary
+                    </p>
+                    <p className="text-xs text-[var(--text-muted)] truncate">
+                      {summary.inputText.substring(0, 60)}...
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-medium">{summary.wordCount} words</p>
+                    <p className="text-xs text-[var(--text-muted)]">
+                      {new Date(summary.createdAt).toLocaleDateString()}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <div className="w-16 h-16 rounded-full bg-[var(--bg-tertiary)] flex items-center justify-center mx-auto mb-4">
+                <Scissors className="w-8 h-8 text-[var(--text-muted)]" />
+              </div>
+              <p className="text-[var(--text-secondary)] mb-4">
+                No summaries yet. Start summarizing!
+              </p>
+              <Link href="/dashboard/tools" className="btn-primary inline-flex items-center gap-2">
+                <Sparkles className="w-4 h-4" />
+                Create Your First Summary
+              </Link>
+            </div>
+          )}
+        </div>
+
+        <div className="card p-6 bg-gradient-to-br from-[var(--accent-primary)]/10 to-transparent border-[var(--accent-primary)]/20">
+          <h3 className="text-lg font-semibold mb-4" style={{ fontFamily: "var(--font-outfit)" }}>
+            Quick Tips
+          </h3>
+          <div className="space-y-4">
+            <div className="flex gap-3">
+              <div className="w-8 h-8 rounded-lg bg-[var(--accent-primary)]/20 flex items-center justify-center flex-shrink-0">
+                <Zap className="w-4 h-4 text-[var(--accent-primary)]" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">Use keyboard shortcuts</p>
+                <p className="text-xs text-[var(--text-muted)]">Ctrl+Enter to submit</p>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                <FileText className="w-4 h-4 text-blue-500" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">Paste any content</p>
+                <p className="text-xs text-[var(--text-muted)]">Articles, emails, documents</p>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <div className="w-8 h-8 rounded-lg bg-rose-500/20 flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-4 h-4 text-rose-500" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">Multiple modes</p>
+                <p className="text-xs text-[var(--text-muted)]">Brief, Detailed, Bullet points</p>
+              </div>
+            </div>
+          </div>
+          
+          {!isPro && (
+            <div className="mt-6 pt-6 border-t border-[var(--border)]">
+              <p className="text-sm font-medium mb-3">Unlock more features</p>
+              <Link href="/pricing" className="btn-primary w-full text-center block">
+                Upgrade to Pro
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
