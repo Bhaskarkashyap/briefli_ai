@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Briefly.io - AI-Powered Summarization Tool",
+  title: "Briefliii AI - AI-Powered Summarization Tool",
   description: "Transform long content into concise, actionable summaries with AI",
 };
 

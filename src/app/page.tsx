@@ -146,7 +146,7 @@ export default function HomePage() {
               Ready to Get Started?
             </h2>
             <p className="text-[var(--text-secondary)] mb-8 max-w-xl mx-auto">
-              Join thousands of content creators who trust Briefly.io for their
+              Join thousands of content creators who trust Briefliii AI for their
               summarization needs.
             </p>
             <Link href="/register" className="btn-primary text-lg px-8 py-4">
@@ -162,10 +162,10 @@ export default function HomePage() {
             <div className="w-6 h-6 rounded gradient-bg flex items-center justify-center">
               <Zap className="w-4 h-4 text-white" />
             </div>
-            <span className="font-semibold">Briefly.io</span>
+            <span className="font-semibold">Briefliii AI</span>
           </div>
           <p className="text-sm text-[var(--text-muted)]">
-            © 2026 Briefly.io. All rights reserved.
+            © 2026 Briefliii AI. All rights reserved.
           </p>
         </div>
       </footer>

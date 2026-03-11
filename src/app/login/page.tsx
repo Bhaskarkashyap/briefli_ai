@@ -49,7 +49,7 @@ export default function LoginPage() {
               <Zap className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-semibold" style={{ fontFamily: "var(--font-outfit)" }}>
-              Briefly.io
+              Briefliii AI
             </span>
           </Link>
 
@@ -64,7 +64,7 @@ export default function LoginPage() {
           </p>
 
           {error && (
-            <div className="bg-[var(--error)]/10 border border-[var(--error)] text-[var(--error)] px-4 py-3 rounded-lg mb-6">
+            <div className="bg-[var(--error)]/10 border border-[var(--error)] text-[var(--error)] px-4 py-2 rounded-lg mb-6">
               {error}
             </div>
           )}
@@ -79,7 +79,7 @@ export default function LoginPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition"
+                className="w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition"
                 placeholder="you@example.com"
               />
             </div>
@@ -94,7 +94,7 @@ export default function LoginPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition pr-12"
+                  className="w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition pr-12"
                   placeholder="*******"
                 />
                 <button
@@ -110,7 +110,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-primary w-full py-3 disabled:opacity-50"
+              className="btn-primary w-full py-2 disabled:opacity-50"
             >
               {loading ? "Signing in..." : "Sign In"}
             </button>
@@ -135,7 +135,7 @@ export default function LoginPage() {
               <p className="text-sm text-[var(--text-muted)] mb-2">Sample Summary</p>
               <h3 className="text-lg font-semibold mb-3">The Future of AI Summarization</h3>
               <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-                Briefly.io uses advanced AI to transform lengthy content into concise, 
+                Briefliii AI uses advanced AI to transform lengthy content into concise, 
                 actionable summaries in seconds. Perfect for professionals, students, 
                 and content creators...
               </p>
