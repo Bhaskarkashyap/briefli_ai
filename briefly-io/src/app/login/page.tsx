@@ -95,7 +95,7 @@ export default function LoginPage() {
                     setFormData({ ...formData, password: e.target.value })
                   }
                   className="w-full px-4 py-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition pr-12"
-                  placeholder="••••••••"
+                  placeholder="*******"
                 />
                 <button
                   type="button"

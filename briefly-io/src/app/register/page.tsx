@@ -122,7 +122,7 @@ export default function RegisterPage() {
                     setFormData({ ...formData, password: e.target.value })
                   }
                   className="w-full px-4 py-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition pr-12"
-                  placeholder="••••••••"
+                  placeholder="******"
                 />
                 <button
                   type="button"
@@ -145,8 +145,8 @@ export default function RegisterPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, confirmPassword: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition"
-                placeholder="••••••••"
+                className="w-full px-4 py-3 rounded-lg bg-bg-tertiary border border-border focus:border-accent-primary outline-none transition"
+                placeholder="******"
               />
             </div>
 
@@ -159,9 +159,9 @@ export default function RegisterPage() {
             </button>
           </form>
 
-          <p className="text-center text-[var(--text-secondary)] mt-8">
+          <p className="text-center text-text-secondary mt-8">
             Already have an account?{" "}
-            <Link href="/login" className="text-[var(--accent-primary)] hover:underline font-medium">
+            <Link href="/login" className="text-accent-primary hover:underline font-medium">
               Sign in
             </Link>
           </p>
@@ -175,9 +175,9 @@ export default function RegisterPage() {
         <div className="relative z-10 flex flex-col items-center justify-center w-full p-12 text-center">
           <div className="floating-card card p-8 mb-8 max-w-md">
             <div className="text-left">
-              <p className="text-sm text-[var(--text-muted)] mb-2">Sample Summary</p>
+              <p className="text-sm text-text-muted mb-2">Sample Summary</p>
               <h3 className="text-lg font-semibold mb-3">The Future of AI Summarization</h3>
-              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+              <p className="text-text-muted text-sm leading-relaxed">
                 Briefly.io uses advanced AI to transform lengthy content into concise, 
                 actionable summaries in seconds. Perfect for professionals, students, 
                 and content creators...
