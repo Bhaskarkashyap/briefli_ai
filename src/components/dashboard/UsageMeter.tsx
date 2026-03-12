@@ -13,10 +13,10 @@ export function UsageMeter({ used, limit, label }: UsageMeterProps) {
   return (
     <div className="card p-4">
       <div className="flex justify-between items-center mb-2">
-        <span className="text-sm text-[var(--text-secondary)]">{label}</span>
+        <span className="text-sm text-text-secondary">{label}</span>
         <span className="text-sm font-medium">
           {isUnlimited ? (
-            <span className="text-[var(--success)]">Unlimited</span>
+            <span className="text-success">Unlimited</span>
           ) : (
             <span>
               {used} / {limit}
@@ -24,13 +24,13 @@ export function UsageMeter({ used, limit, label }: UsageMeterProps) {
           )}
         </span>
       </div>
-      <div className="h-2 bg-[var(--bg-tertiary)] rounded-full overflow-hidden">
+      <div className="h-2 bg-bg-tertiary rounded-full overflow-hidden">
         <div
           className={`h-full transition-all duration-300 ${
             percentage > 80
-              ? "bg-[var(--error)]"
+              ? "bg-error"
               : percentage > 50
-              ? "bg-[var(--warning)]"
+              ? "bg-warning"
               : "gradient-bg"
           }`}
           style={{ width: `${percentage}%` }}

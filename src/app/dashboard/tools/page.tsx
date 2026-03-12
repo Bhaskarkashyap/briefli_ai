@@ -97,7 +97,7 @@ function SummarizerContent() {
         >
           AI Summarizer
         </h1>
-        <p className="text-[var(--text-secondary)]">
+        <p className="text-text-secondary">
           Transform long content into concise summaries
         </p>
       </div>
@@ -114,8 +114,8 @@ function SummarizerContent() {
             <span
               className={`text-sm ${
                 wordCount > maxWords * 0.9
-                  ? "text-[var(--error)]"
-                  : "text-[var(--text-muted)]"
+                  ? "text-error"
+                  : "text-text-muted"
               }`}
             >
               {wordCount} / {maxWords} words
@@ -126,7 +126,7 @@ function SummarizerContent() {
             value={input}
             onChange={(e) => handleInputChange(e.target.value)}
             placeholder="Paste or type your content here..."
-            className="w-full h-64 px-4 py-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition resize-none"
+            className="w-full h-64 px-4 py-3 rounded-lg bg-bg-tertiary border border-border focus:border-accent-primary outline-none transition resize-none"
           />
 
           <div className="mt-4">
@@ -139,7 +139,7 @@ function SummarizerContent() {
                 className={`px-4 py-2 rounded-lg transition ${
                   mode === "bullet"
                     ? "gradient-bg text-white"
-                    : "bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--bg-primary)]"
+                    : "bg-bg-tertiary text-text-secondary hover:bg-bg-primary"
                 }`}
               >
                 Bullet Points
@@ -149,7 +149,7 @@ function SummarizerContent() {
                 className={`px-4 py-2 rounded-lg transition ${
                   mode === "paragraph"
                     ? "gradient-bg text-white"
-                    : "bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--bg-primary)]"
+                    : "bg-bg-tertiary text-text-secondary hover:bg-bg-primary"
                 }`}
               >
                 Paragraph
@@ -158,7 +158,7 @@ function SummarizerContent() {
           </div>
 
           {error && (
-            <div className="mt-4 bg-[var(--error)]/10 border border-[var(--error)] text-[var(--error)] px-4 py-3 rounded-lg">
+            <div className="mt-4 bg-error/10 border border-error text-error px-4 py-3 rounded-lg">
               {error}
             </div>
           )}
@@ -181,9 +181,9 @@ function SummarizerContent() {
             )}
           </button>
 
-          <p className="text-sm text-[var(--text-muted)] mt-3 text-center">
+          <p className="text-sm text-text-muted mt-3 text-center">
             {isPro ? (
-              <span className="text-[var(--success)]">Unlimited summaries remaining</span>
+              <span className="text-success">Unlimited summaries remaining</span>
             ) : (
               <span>{remaining} of 3 free summaries remaining today</span>
             )}
@@ -202,7 +202,7 @@ function SummarizerContent() {
               <div className="flex gap-2">
                 <button
                   onClick={handleCopy}
-                  className="p-2 rounded-lg bg-[var(--bg-tertiary)] hover:bg-[var(--bg-primary)] transition"
+                  className="p-2 rounded-lg bg-bg-tertiary hover:bg-bg-primary transition"
                   title="Copy to clipboard"
                 >
                   <Copy className="w-4 h-4" />
@@ -210,7 +210,7 @@ function SummarizerContent() {
                 {isPro && (
                   <button
                     onClick={handleExport}
-                    className="p-2 rounded-lg bg-[var(--bg-tertiary)] hover:bg-[var(--bg-primary)] transition"
+                    className="p-2 rounded-lg bg-bg-tertiary hover:bg-bg-primary transition"
                     title="Download"
                   >
                     <Download className="w-4 h-4" />
@@ -220,26 +220,26 @@ function SummarizerContent() {
             )}
           </div>
 
-          <div className="w-full h-64 px-4 py-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] overflow-auto">
+          <div className="w-full h-64 px-4 py-3 rounded-lg bg-bg-tertiary border border-border overflow-auto">
             {output ? (
-              <pre className="whitespace-pre-wrap text-[var(--text-secondary)]">
+              <pre className="whitespace-pre-wrap text-text-secondary">
                 {output}
               </pre>
             ) : (
-              <p className="text-[var(--text-muted)] text-center py-8">
+              <p className="text-text-muted text-center py-8">
                 Your summary will appear here
               </p>
             )}
           </div>
 
           {copied && (
-            <p className="text-sm text-[var(--success)] mt-2 text-center">
+            <p className="text-sm text-success mt-2 text-center">
               Copied to clipboard!
             </p>
           )}
 
           {!isPro && output && (
-            <p className="text-sm text-[var(--text-muted)] mt-3 text-center">
+            <p className="text-sm text-text-muted mt-3 text-center">
               Upgrade to Pro for export and unlimited summaries
             </p>
           )}

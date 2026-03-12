@@ -23,12 +23,12 @@ export function PricingCard({
   return (
     <div
       className={`card p-8 relative ${
-        isPopular ? "border-[var(--accent-primary)]" : ""
+        isPopular ? "border-accent-primary" : ""
       }`}
     >
       {isPopular && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-          <span className="bg-[var(--accent-primary)] text-white text-xs px-3 py-1 rounded-full">
+          <span className="bg-accent-primary text-white text-xs px-3 py-1 rounded-full">
             Most Popular
           </span>
         </div>
@@ -48,14 +48,14 @@ export function PricingCard({
         >
           ${price}
         </span>
-        {price > 0 && <span className="text-[var(--text-muted)]">/month</span>}
+        {price > 0 && <span className="text-text-muted">/month</span>}
       </div>
 
       <ul className="space-y-4 mb-8">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
-            <Check className="w-5 h-5 text-[var(--success)] flex-shrink-0 mt-0.5" />
-            <span className="text-[var(--text-secondary)]">{feature}</span>
+            <Check className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
+            <span className="text-text-secondary">{feature}</span>
           </li>
         ))}
       </ul>

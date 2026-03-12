@@ -31,10 +31,10 @@ export function Sidebar() {
   const { data: session } = useSession();
 
   return (
-    <aside className="w-64 h-screen bg-[var(--bg-secondary)] border-r border-[var(--border)] fixed left-0 top-0 flex flex-col">
-      <div className="p-4 border-b border-[var(--border)]">
+    <aside className="w-64 h-screen bg-bg-secondary border-r border-border fixed left-0 top-0 flex flex-col">
+      <div className="p-4 border-b border-border">
         <Link href="/" className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg gradient-bg flex items-center justify-center shadow-lg shadow-[var(--accent-primary)]/20">
+          <div className="w-9 h-9 rounded-lg gradient-bg flex items-center justify-center shadow-lg shadow-accent-primary/20">
             <Zap className="w-5 h-5 text-white" />
           </div>
           <span className="text-base font-semibold" style={{ fontFamily: "var(--font-outfit)" }}>
@@ -44,7 +44,7 @@ export function Sidebar() {
       </div>
 
       <div className="p-3">
-        <div className="card p-3 bg-gradient-to-br from-[var(--bg-tertiary)] to-[var(--bg-secondary)]">
+        <div className="card p-3 bg-gradient-to-br from-bg-tertiary to-bg-secondary">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
               <span className="text-white text-sm font-semibold">
@@ -57,10 +57,10 @@ export function Sidebar() {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2 px-2 py-1.5 rounded-md bg-[var(--bg-primary)]/50">
+          <div className="flex items-center gap-2 px-2 py-1.5 rounded-md bg-bg-primary/50">
             <Crown className="w-3 h-3 text-rose-500" />
             <span className="text-xs">Free Plan</span>
-            <Link href="/pricing" className="ml-auto text-xs text-[var(--accent-primary)] hover:underline">
+            <Link href="/pricing" className="ml-auto text-xs text-accent-primary hover:underline">
               Upgrade
             </Link>
           </div>
@@ -68,7 +68,7 @@ export function Sidebar() {
       </div>
 
       <nav className="flex-1 px-3 py-2">
-        <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider px-3 mb-2">
+        <p className="text-xs font-medium text-text-muted uppercase tracking-wider px-3 mb-2">
           Menu
         </p>
         <ul className="space-y-0.5">
@@ -80,11 +80,11 @@ export function Sidebar() {
                   href={item.href}
                   className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all ${
                     isActive
-                      ? "bg-gradient-to-r from-[var(--accent-primary)]/20 to-transparent text-[var(--accent-primary)] border-l-2 border-[var(--accent-primary)]"
-                      : "text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--text-primary)]"
+                      ? "bg-gradient-to-r from-accent-primary/20 to-transparent text-accent-primary border-l-2 border-accent-primary"
+                      : "text-text-secondary hover:bg-bg-tertiary hover:text-text-primary"
                   }`}
                 >
-                  <item.icon className={`w-4 h-4 ${isActive ? "text-[var(--accent-primary)]" : ""}`} />
+                  <item.icon className={`w-4 h-4 ${isActive ? "text-accent-primary" : ""}`} />
                   <span className="text-sm">{item.label}</span>
                 </Link>
               </li>
@@ -92,7 +92,7 @@ export function Sidebar() {
           })}
         </ul>
 
-        <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider px-3 mt-4 mb-2">
+        <p className="text-xs font-medium text-text-muted uppercase tracking-wider px-3 mt-4 mb-2">
           Support
         </p>
         <ul className="space-y-0.5">
@@ -100,7 +100,7 @@ export function Sidebar() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="flex items-center gap-3 px-3 py-2 rounded-lg text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--text-primary)] transition-all"
+                className="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary hover:bg-bg-tertiary hover:text-text-primary transition-all"
               >
                 <item.icon className="w-4 h-4" />
                 <span className="text-sm">{item.label}</span>
@@ -110,7 +110,7 @@ export function Sidebar() {
         </ul>
       </nav>
 
-      <div className="p-3 border-t border-[var(--border)]">
+      <div className="p-3 border-t border-border">
       
         <button
           onClick={() => signOut({ callbackUrl: "/" })}

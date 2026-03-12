@@ -72,12 +72,12 @@ export default function RegisterPage() {
           >
             Create your account
           </h1>
-          <p className="text-[var(--text-secondary)] mb-8">
+          <p className="text-text-secondary mb-8">
             Start summarizing content in seconds
           </p>
 
           {error && (
-            <div className="bg-[var(--error)]/10 border border-[var(--error)] text-[var(--error)] px-4 py-2 rounded-lg mb-6">
+            <div className="bg-error/10 border border-error text-error px-4 py-2 rounded-lg mb-6">
               {error}
             </div>
           )}
@@ -92,7 +92,7 @@ export default function RegisterPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition"
+                className="w-full px-4 py-2 rounded-lg bg-bg-tertiary border border-border focus:border-accent-primary outline-none transition"
                 placeholder="John Doe"
               />
             </div>
@@ -106,7 +106,7 @@ export default function RegisterPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className="w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition"
+                className="w-full px-4 py-2 rounded-lg bg-bg-tertiary border border-border focus:border-accent-primary outline-none transition"
                 placeholder="you@example.com"
               />
             </div>
@@ -121,13 +121,13 @@ export default function RegisterPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
-                  className="w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition pr-12"
+                  className="w-full px-4 py-2 rounded-lg bg-bg-tertiary border border-border focus:border-accent-primary outline-none transition pr-12"
                   placeholder="******"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>

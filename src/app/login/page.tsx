@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
@@ -33,12 +33,16 @@ export default function LoginPage() {
       }
 
       router.push("/dashboard");
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+    } catch (err: unknown) {
+  if (err instanceof Error) {
+    setError(err.message);
+  } else {
+    setError("Something went wrong");
+  }
+} finally {
+  setLoading(false);
+}
+  }
 
   return (
     <div className="min-h-screen flex">
@@ -59,12 +63,12 @@ export default function LoginPage() {
           >
             Welcome back
           </h1>
-          <p className="text-[var(--text-secondary)] mb-8">
+          <p className="text-text-secondary mb-8">
             Enter your credentials to access your account
           </p>
 
           {error && (
-            <div className="bg-[var(--error)]/10 border border-[var(--error)] text-[var(--error)] px-4 py-2 rounded-lg mb-6">
+            <div className="bg-error/10 border border-error text-error px-4 py-2 rounded-lg mb-6">
               {error}
             </div>
           )}
@@ -79,7 +83,7 @@ export default function LoginPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className="w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition"
+                className="w-full px-4 py-2 rounded-lg bg-bg-tertiary border border-border focus:border-accent-primary outline-none transition"
                 placeholder="you@example.com"
               />
             </div>
@@ -94,13 +98,13 @@ export default function LoginPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
-                  className="w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition pr-12"
+                  className="w-full px-4 py-2 rounded-lg bg-bg-tertiary border border-border focus:border-accent-primary outline-none transition pr-12"
                   placeholder="*******"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -116,9 +120,9 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <p className="text-center text-[var(--text-secondary)] mt-8">
+          <p className="text-center text-text-secondary mt-8">
             Don&apos;t have an account?{" "}
-            <Link href="/register" className="text-[var(--accent-primary)] hover:underline font-medium">
+            <Link href="/register" className="text-accent-primary hover:underline font-medium">
               Sign up for free
             </Link>
           </p>
@@ -132,9 +136,9 @@ export default function LoginPage() {
         <div className="relative z-10 flex flex-col items-center justify-center w-full p-12 text-center">
           <div className="floating-card card p-8 mb-8 max-w-md">
             <div className="text-left">
-              <p className="text-sm text-[var(--text-muted)] mb-2">Sample Summary</p>
+              <p className="text-sm text-text-muted mb-2">Sample Summary</p>
               <h3 className="text-lg font-semibold mb-3">The Future of AI Summarization</h3>
-              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+              <p className="text-text-secondary text-sm leading-relaxed">
                 Briefliii AI uses advanced AI to transform lengthy content into concise, 
                 actionable summaries in seconds. Perfect for professionals, students, 
                 and content creators...

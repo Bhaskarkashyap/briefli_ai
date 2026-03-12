@@ -10,7 +10,7 @@ interface FeatureCardProps {
 
 export function FeatureCard({ icon: Icon, title, description }: FeatureCardProps) {
   return (
-    <div className="card p-6 hover:border-[var(--accent-primary)] transition border-transparent">
+    <div className="card p-6 hover:border-accent-primary transition border-transparent">
       <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
         <Icon className="w-6 h-6 text-white" />
       </div>
@@ -20,7 +20,7 @@ export function FeatureCard({ icon: Icon, title, description }: FeatureCardProps
       >
         {title}
       </h3>
-      <p className="text-[var(--text-secondary)]">{description}</p>
+      <p className="text-text-secondary">{description}</p>
     </div>
   );
 }
