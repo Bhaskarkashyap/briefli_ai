@@ -1,7 +1,7 @@
-# Briefly.io - AI Summarization SaaS
+# Briefliii AI - AI Summarization SaaS
 
 ## Project Overview
-- **Project Name:** Briefly.io
+- **Project Name:** Briefliii AI
 - **Type:** SaaS Web Application
 - **Core Functionality:** AI-powered text summarization tool with free tier limits and paid upgrades
 - **Target Users:** Content creators, writers, marketers, students, professionals

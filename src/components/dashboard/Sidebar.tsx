@@ -38,7 +38,7 @@ export function Sidebar() {
             <Zap className="w-5 h-5 text-white" />
           </div>
           <span className="text-base font-semibold" style={{ fontFamily: "var(--font-outfit)" }}>
-            Briefly.io
+            Briefliii AI
           </span>
         </Link>
       </div>

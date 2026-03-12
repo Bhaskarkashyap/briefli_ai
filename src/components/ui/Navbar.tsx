@@ -29,7 +29,7 @@ export function Navbar() {
               <Zap className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-semibold" style={{ fontFamily: "var(--font-outfit)" }}>
-              Briefly.io
+              Briefliii AI
             </span>
           </Link>
 

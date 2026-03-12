@@ -62,7 +62,7 @@ export default function RegisterPage() {
               <Zap className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-semibold" style={{ fontFamily: "var(--font-outfit)" }}>
-              Briefly.io
+              Briefliii AI
             </span>
           </Link>
 
@@ -77,7 +77,7 @@ export default function RegisterPage() {
           </p>
 
           {error && (
-            <div className="bg-[var(--error)]/10 border border-[var(--error)] text-[var(--error)] px-4 py-3 rounded-lg mb-6">
+            <div className="bg-[var(--error)]/10 border border-[var(--error)] text-[var(--error)] px-4 py-2 rounded-lg mb-6">
               {error}
             </div>
           )}
@@ -92,7 +92,7 @@ export default function RegisterPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition"
+                className="w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition"
                 placeholder="John Doe"
               />
             </div>
@@ -106,7 +106,7 @@ export default function RegisterPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition"
+                className="w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition"
                 placeholder="you@example.com"
               />
             </div>
@@ -121,7 +121,7 @@ export default function RegisterPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition pr-12"
+                  className="w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border)] focus:border-[var(--accent-primary)] outline-none transition pr-12"
                   placeholder="******"
                 />
                 <button
@@ -145,7 +145,7 @@ export default function RegisterPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, confirmPassword: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-lg bg-bg-tertiary border border-border focus:border-accent-primary outline-none transition"
+                className="w-full px-4 py-2 rounded-lg bg-bg-tertiary border border-border focus:border-accent-primary outline-none transition"
                 placeholder="******"
               />
             </div>
@@ -153,7 +153,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-primary w-full py-3 disabled:opacity-50"
+              className="btn-primary w-full py-2 disabled:opacity-50"
             >
               {loading ? "Creating account..." : "Create Account"}
             </button>
@@ -178,7 +178,7 @@ export default function RegisterPage() {
               <p className="text-sm text-text-muted mb-2">Sample Summary</p>
               <h3 className="text-lg font-semibold mb-3">The Future of AI Summarization</h3>
               <p className="text-text-muted text-sm leading-relaxed">
-                Briefly.io uses advanced AI to transform lengthy content into concise, 
+                Briefliii AI uses advanced AI to transform lengthy content into concise, 
                 actionable summaries in seconds. Perfect for professionals, students, 
                 and content creators...
               </p>
