@@ -50,7 +50,7 @@ export default function LoadingBar() {
   return (
     <div className="fixed top-0 left-0 right-0 z-[9999] h-0.5 bg-transparent">
       <div
-        className="h-full bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] transition-all duration-100 ease-out"
+        className="h-full bg-gradient-to-r from-accent-primary to-accent-secondary transition-all duration-100 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>

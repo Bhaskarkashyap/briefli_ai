@@ -76,7 +76,7 @@ export default function HomePage() {
               Summarize Anything in{" "}
               <span className="gradient-text">Seconds</span>
             </h1>
-            <p className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto mb-10">
+            <p className="text-xl text-text-secondary max-w-2xl mx-auto mb-10">
               AI-powered tool that transforms long content into concise, actionable
               summaries. Perfect for content creators, students, and professionals.
             </p>
@@ -99,7 +99,7 @@ export default function HomePage() {
             >
               Powerful Features
             </h2>
-            <p className="text-[var(--text-secondary)] text-center mb-12 max-w-2xl mx-auto">
+            <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
               Everything you need to summarize content quickly and efficiently
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -118,7 +118,7 @@ export default function HomePage() {
             >
               Simple Pricing
             </h2>
-            <p className="text-[var(--text-secondary)] text-center mb-12 max-w-2xl mx-auto">
+            <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
               Choose the plan that fits your needs. Upgrade or downgrade anytime.
             </p>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -145,7 +145,7 @@ export default function HomePage() {
             >
               Ready to Get Started?
             </h2>
-            <p className="text-[var(--text-secondary)] mb-8 max-w-xl mx-auto">
+            <p className="text-text-secondary mb-8 max-w-xl mx-auto">
               Join thousands of content creators who trust Briefliii AI for their
               summarization needs.
             </p>
@@ -156,7 +156,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <footer className="py-8 px-4 border-t border-[var(--border)]">
+      <footer className="py-8 px-4 border-t border-border">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded gradient-bg flex items-center justify-center">
@@ -164,7 +164,7 @@ export default function HomePage() {
             </div>
             <span className="font-semibold">Briefliii AI</span>
           </div>
-          <p className="text-sm text-[var(--text-muted)]">
+          <p className="text-sm text-text-muted">
             © 2026 Briefliii AI. All rights reserved.
           </p>
         </div>

@@ -65,7 +65,7 @@ export default async function DashboardPage() {
           >
             Welcome back, {user?.name?.split(" ")[0] || "User"}!
           </h1>
-          <p className="text-[var(--text-secondary)]">
+          <p className="text-text-secondary">
             Here&apos;s what&apos;s happening with your summaries today
           </p>
         </div>
@@ -73,7 +73,7 @@ export default async function DashboardPage() {
           <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${
           isPro 
             ? "bg-gradient-to-r from-rose-500/20 to-pink-500/20 border border-rose-500/30" 
-            : "bg-[var(--bg-tertiary)] border border-[var(--border)]"
+            : "bg-bg-tertiary border border-border"
         }`}>
           {isPro ? (
             <>
@@ -82,7 +82,7 @@ export default async function DashboardPage() {
             </>
           ) : (
             <>
-              <Zap className="w-4 h-4 text-[var(--accent-primary)]" />
+              <Zap className="w-4 h-4 text-accent-primary" />
               <span className="text-sm font-medium">Free Plan</span>
             </>
           )}
@@ -102,9 +102,9 @@ export default async function DashboardPage() {
           />
         </div>
         
-        <div className="card p-6 flex flex-col justify-between bg-gradient-to-br from-[var(--bg-secondary)] to-[var(--bg-tertiary)]">
+        <div className="card p-6 flex flex-col justify-between bg-gradient-to-br from-bg-secondary to-bg-tertiary">
           <div>
-            <p className="text-[var(--text-secondary)] text-sm mb-1">
+            <p className="text-text-secondary text-sm mb-1">
               {isPro ? "Pro Features Active" : "Current Plan"}
             </p>
             <p 
@@ -129,25 +129,25 @@ export default async function DashboardPage() {
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link
           href="/dashboard/tools"
-          className="card p-5 hover:border-[var(--accent-primary)] transition-all group relative overflow-hidden"
+          className="card p-5 hover:border-accent-primary transition-all group relative overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--accent-primary)]/5 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform" />
+          <div className="absolute top-0 right-0 w-24 h-24 bg-accent-primary/5 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform" />
           <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mb-4 group-hover:scale-110 transition-all">
             <Sparkles className="w-6 h-6 text-white" />
           </div>
           <h3 className="text-lg font-semibold mb-1">
             New Summary
           </h3>
-          <p className="text-[var(--text-secondary)] text-sm">
+          <p className="text-text-secondary text-sm">
             Create AI-powered summary
           </p>
         </Link>
 
         <div className="card p-5">
-          <div className="w-12 h-12 rounded-xl bg-[var(--bg-tertiary)] flex items-center justify-center mb-4">
-            <FileText className="w-6 h-6 text-[var(--accent-primary)]" />
+          <div className="w-12 h-12 rounded-xl bg-bg-tertiary flex items-center justify-center mb-4">
+            <FileText className="w-6 h-6 text-accent-primary" />
           </div>
-          <p className="text-[var(--text-secondary)] text-sm mb-1">Total Summaries</p>
+          <p className="text-text-secondary text-sm mb-1">Total Summaries</p>
           <p className="text-2xl font-bold">{stats.totalSummaries}</p>
           <div className="flex items-center gap-1 mt-2 text-rose-500 text-xs">
             <TrendingUp className="w-3 h-3" />
@@ -156,25 +156,25 @@ export default async function DashboardPage() {
         </div>
 
         <div className="card p-5">
-          <div className="w-12 h-12 rounded-xl bg-[var(--bg-tertiary)] flex items-center justify-center mb-4">
+          <div className="w-12 h-12 rounded-xl bg-bg-tertiary flex items-center justify-center mb-4">
             <Clock className="w-6 h-6 text-blue-500" />
           </div>
-          <p className="text-[var(--text-secondary)] text-sm mb-1">Time Saved</p>
+          <p className="text-text-secondary text-sm mb-1">Time Saved</p>
           <p className="text-2xl font-bold">
             {timeSaved >= 60 ? `${Math.floor(timeSaved / 60)}h` : `${timeSaved}m`}
           </p>
-          <p className="text-[var(--text-muted)] text-xs mt-2">Reading time</p>
+          <p className="text-text-muted text-xs mt-2">Reading time</p>
         </div>
 
         <div className="card p-5">
-          <div className="w-12 h-12 rounded-xl bg-[var(--bg-tertiary)] flex items-center justify-center mb-4">
+          <div className="w-12 h-12 rounded-xl bg-bg-tertiary flex items-center justify-center mb-4">
             <Scissors className="w-6 h-6 text-rose-500" />
           </div>
-          <p className="text-[var(--text-secondary)] text-sm mb-1">Words Processed</p>
+          <p className="text-text-secondary text-sm mb-1">Words Processed</p>
           <p className="text-2xl font-bold">
             {stats.totalWords.toLocaleString()}
           </p>
-          <p className="text-[var(--text-muted)] text-xs mt-2">Total</p>
+          <p className="text-text-muted text-xs mt-2">Total</p>
         </div>
       </div>
 
@@ -187,7 +187,7 @@ export default async function DashboardPage() {
             {recentSummaries.length > 0 && (
               <Link 
                 href="/dashboard/tools" 
-                className="text-sm text-[var(--accent-primary)] hover:underline flex items-center gap-1"
+                className="text-sm text-accent-primary hover:underline flex items-center gap-1"
               >
                 View all <ArrowRight className="w-4 h-4" />
               </Link>
@@ -199,28 +199,28 @@ export default async function DashboardPage() {
               {recentSummaries.map((summary, index) => (
                 <div
                   key={summary.id}
-                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-[var(--bg-tertiary)] transition"
+                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-bg-tertiary transition"
                 >
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                    index === 0 ? "gradient-bg" : "bg-[var(--bg-tertiary)]"
+                    index === 0 ? "gradient-bg" : "bg-bg-tertiary"
                   }`}>
                     {index === 0 ? (
                       <Sparkles className="w-5 h-5 text-white" />
                     ) : (
-                      <FileText className="w-5 h-5 text-[var(--text-secondary)]" />
+                      <FileText className="w-5 h-5 text-text-secondary" />
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">
                       {summary.mode.charAt(0).toUpperCase() + summary.mode.slice(1)} Summary
                     </p>
-                    <p className="text-xs text-[var(--text-muted)] truncate">
+                    <p className="text-xs text-text-muted truncate">
                       {summary.inputText.substring(0, 60)}...
                     </p>
                   </div>
                   <div className="text-right">
                     <p className="text-sm font-medium">{summary.wordCount} words</p>
-                    <p className="text-xs text-[var(--text-muted)]">
+                    <p className="text-xs text-text-muted">
                       {new Date(summary.createdAt).toLocaleDateString()}
                     </p>
                   </div>
@@ -229,10 +229,10 @@ export default async function DashboardPage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <div className="w-16 h-16 rounded-full bg-[var(--bg-tertiary)] flex items-center justify-center mx-auto mb-4">
-                <Scissors className="w-8 h-8 text-[var(--text-muted)]" />
+              <div className="w-16 h-16 rounded-full bg-bg-tertiary flex items-center justify-center mx-auto mb-4">
+                <Scissors className="w-8 h-8 text-text-muted" />
               </div>
-              <p className="text-[var(--text-secondary)] mb-4">
+              <p className="text-text-secondary mb-4">
                 No summaries yet. Start summarizing!
               </p>
               <Link href="/dashboard/tools" className="btn-primary inline-flex items-center gap-2">
@@ -243,18 +243,18 @@ export default async function DashboardPage() {
           )}
         </div>
 
-        <div className="card p-6 bg-gradient-to-br from-[var(--accent-primary)]/10 to-transparent border-[var(--accent-primary)]/20">
+        <div className="card p-6 bg-gradient-to-br from-accent-primary/10 to-transparent border-accent-primary/20">
           <h3 className="text-lg font-semibold mb-4" style={{ fontFamily: "var(--font-outfit)" }}>
             Quick Tips
           </h3>
           <div className="space-y-4">
             <div className="flex gap-3">
-              <div className="w-8 h-8 rounded-lg bg-[var(--accent-primary)]/20 flex items-center justify-center flex-shrink-0">
-                <Zap className="w-4 h-4 text-[var(--accent-primary)]" />
+              <div className="w-8 h-8 rounded-lg bg-accent-primary/20 flex items-center justify-center flex-shrink-0">
+                <Zap className="w-4 h-4 text-accent-primary" />
               </div>
               <div>
                 <p className="text-sm font-medium">Use keyboard shortcuts</p>
-                <p className="text-xs text-[var(--text-muted)]">Ctrl+Enter to submit</p>
+                <p className="text-xs text-text-muted">Ctrl+Enter to submit</p>
               </div>
             </div>
             <div className="flex gap-3">
@@ -263,7 +263,7 @@ export default async function DashboardPage() {
               </div>
               <div>
                 <p className="text-sm font-medium">Paste any content</p>
-                <p className="text-xs text-[var(--text-muted)]">Articles, emails, documents</p>
+                <p className="text-xs text-text-muted">Articles, emails, documents</p>
               </div>
             </div>
             <div className="flex gap-3">
@@ -272,13 +272,13 @@ export default async function DashboardPage() {
               </div>
               <div>
                 <p className="text-sm font-medium">Multiple modes</p>
-                <p className="text-xs text-[var(--text-muted)]">Brief, Detailed, Bullet points</p>
+                <p className="text-xs text-text-muted">Brief, Detailed, Bullet points</p>
               </div>
             </div>
           </div>
           
           {!isPro && (
-            <div className="mt-6 pt-6 border-t border-[var(--border)]">
+            <div className="mt-6 pt-6 border-t border-border">
               <p className="text-sm font-medium mb-3">Unlock more features</p>
               <Link href="/pricing" className="btn-primary w-full text-center block">
                 Upgrade to Pro

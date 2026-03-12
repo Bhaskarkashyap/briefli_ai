@@ -49,7 +49,7 @@ export default function PricingPage() {
             >
               Simple, Transparent Pricing
             </h1>
-            <p className="text-[var(--text-secondary)]">
+            <p className="text-text-secondary">
               Choose the plan that works best for you
             </p>
           </div>
@@ -80,7 +80,7 @@ export default function PricingPage() {
                   >
                     {faq.question}
                   </h3>
-                  <p className="text-[var(--text-secondary)] text-sm">
+                  <p className="text-text-secondary text-sm">
                     {faq.answer}
                   </p>
                 </div>

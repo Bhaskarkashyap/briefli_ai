@@ -37,13 +37,13 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-8">
               <Link
                 href="/#features"
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition"
+                className="text-text-secondary hover:text-text-primary transition"
               >
                 Features
               </Link>
               <Link
                 href="/pricing"
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition"
+                className="text-text-secondary hover:text-text-primary transition"
               >
                 Pricing
               </Link>
@@ -58,7 +58,7 @@ export function Navbar() {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition flex items-center gap-2"
+                  className="text-text-secondary hover:text-text-primary transition flex items-center gap-2"
                 >
                   <LogOut className="w-4 h-4" />
                   Logout
@@ -70,7 +70,7 @@ export function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition"
+                  className="text-text-secondary hover:text-text-primary transition"
                 >
                   Sign In
                 </Link>
@@ -100,20 +100,20 @@ export function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden glass border-t border-[var(--border)]">
+        <div className="md:hidden glass border-t border-border">
           <div className="px-4 py-4 space-y-3">
             {isLanding && (
               <>
                 <Link
                   href="/#features"
-                  className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                  className="block text-text-secondary hover:text-text-primary"
                   onClick={() => setIsOpen(false)}
                 >
                   Features
                 </Link>
                 <Link
                   href="/pricing"
-                  className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                  className="block text-text-secondary hover:text-text-primary"
                   onClick={() => setIsOpen(false)}
                 >
                   Pricing
@@ -124,7 +124,7 @@ export function Navbar() {
               <>
                 <Link
                   href="/dashboard"
-                  className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                  className="block text-text-secondary hover:text-text-primary"
                   onClick={() => setIsOpen(false)}
                 >
                   Dashboard
@@ -134,7 +134,7 @@ export function Navbar() {
                     handleLogout();
                     setIsOpen(false);
                   }}
-                  className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)] w-full text-left"
+                  className="block text-text-secondary hover:text-text-primary w-full text-left"
                 >
                   Logout
                 </button>
@@ -143,7 +143,7 @@ export function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                  className="block text-text-secondary hover:text-text-primary"
                   onClick={() => setIsOpen(false)}
                 >
                   Sign In
