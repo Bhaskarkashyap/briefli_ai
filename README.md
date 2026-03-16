@@ -1,3 +1,5 @@
+![image alt](https://github.com/Bhaskarkashyap/briefliii_ai/blob/d089727e6d0f822acc11d3b46faf4bd5fb2ce245/Product_Screenshot.png)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
