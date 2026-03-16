@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { auth } from "@/lib/auth";
 import { SessionProvider, useSession } from "next-auth/react";
-import { CreditCard, User, Check, X } from "lucide-react";
+import { CreditCard, User, Check, X, Loader2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
 function SettingsContent() {
@@ -74,8 +74,9 @@ function SettingsContent() {
           <button
             onClick={handleUpgrade}
             disabled={loading}
-            className="btn-primary"
+            className="btn-primary flex items-center justify-center gap-2"
           >
+            {loading && <Loader2 className="w-5 h-5 animate-spin" />}
             {loading ? "Processing..." : "Upgrade for $19/month"}
           </button>
         </div>
@@ -145,7 +146,8 @@ function SettingsContent() {
           </div>
 
           {!isPro && (
-            <button onClick={() => handleUpgrade()} className="btn-primary w-full">
+            <button onClick={handleUpgrade} disabled={loading} className="btn-primary w-full flex items-center justify-center gap-2">
+              {loading && <Loader2 className="w-5 h-5 animate-spin" />}
               Upgrade to Pro
             </button>
           )}

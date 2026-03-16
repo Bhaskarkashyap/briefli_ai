@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { Zap, Eye, EyeOff } from "lucide-react";
+import { Zap, Eye, EyeOff, Loader2 } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -114,8 +114,9 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-primary w-full py-2 disabled:opacity-50"
+              className="btn-primary w-full py-2 disabled:opacity-50 flex items-center justify-center gap-2"
             >
+              {loading && <Loader2 className="w-5 h-5 animate-spin" />}
               {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>

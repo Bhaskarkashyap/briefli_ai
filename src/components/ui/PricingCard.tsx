@@ -1,6 +1,7 @@
 "use client";
 
-import { Check } from "lucide-react";
+import { useState } from "react";
+import { Check, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface PricingCardProps {
@@ -19,6 +20,12 @@ export function PricingCard({
   currentPlan,
 }: PricingCardProps) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const handleNavigate = (href: string) => {
+    setLoading(true);
+    router.push(href);
+  };
 
   return (
     <div
@@ -61,21 +68,26 @@ export function PricingCard({
       </ul>
 
       {currentPlan ? (
-        <button disabled className="btn-secondary w-full opacity-50 cursor-not-allowed">
+        <button disabled className="btn-secondary w-full opacity-50 cursor-not-allowed flex items-center justify-center gap-2">
+          <Check className="w-5 h-5" />
           Current Plan
         </button>
       ) : price === 0 ? (
         <button
-          onClick={() => router.push("/register")}
-          className="btn-secondary w-full"
+          onClick={() => handleNavigate("/register")}
+          disabled={loading}
+          className="btn-secondary w-full flex items-center justify-center gap-2"
         >
+          {loading && <Loader2 className="w-5 h-5 animate-spin" />}
           Get Started Free
         </button>
       ) : (
         <button
-          onClick={() => router.push("/dashboard/settings?upgrade=true")}
-          className="btn-primary w-full"
+          onClick={() => handleNavigate("/dashboard/settings?upgrade=true")}
+          disabled={loading}
+          className="btn-primary w-full flex items-center justify-center gap-2"
         >
+          {loading && <Loader2 className="w-5 h-5 animate-spin" />}
           Upgrade Now
         </button>
       )}

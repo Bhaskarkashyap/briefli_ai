@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Zap, Eye, EyeOff } from "lucide-react";
+import { Zap, Eye, EyeOff, Loader2 } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -153,8 +153,9 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-primary w-full py-2 disabled:opacity-50"
+              className="btn-primary w-full py-2 disabled:opacity-50 flex items-center justify-center gap-2"
             >
+              {loading && <Loader2 className="w-5 h-5 animate-spin" />}
               {loading ? "Creating account..." : "Create Account"}
             </button>
           </form>
