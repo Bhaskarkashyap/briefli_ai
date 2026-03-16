@@ -8,16 +8,16 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  name          String?
-  password      String
-  subscription  String    @default("free")
+  id               String   @id @default(cuid())
+  email            String   @unique
+  name             String?
+  password         String
+  subscription     String   @default("free")
   stripeCustomerId String?
-  dailyUsage    Int       @default(0)
-  lastResetDate DateTime  @default(now())
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  dailyUsage       Int      @default(0)
+  lastResetDate    DateTime @default(now())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
 
 model Summary {
