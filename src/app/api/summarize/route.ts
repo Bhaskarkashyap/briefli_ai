@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import OpenAI from "openai";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+const openrouter = new OpenAI({
+  baseURL: "https://openrouter.ai/api/v1",
+  apiKey: process.env.OPENROUTER_API_KEY,
+  defaultHeaders: {
+    "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL,
+    "X-Title": "Briefliii AI",
+  },
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -72,10 +79,12 @@ export async function POST(req: NextRequest) {
       prompt = `Summarize the following text concisely in paragraph format. Capture the main points:\n\n${text}`;
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const completion = await openrouter.chat.completions.create({
+      model: "meta-llama/llama-3.3-70b-instruct:free",
+      messages: [{ role: "user", content: prompt }],
+    });
 
-    const result = await model.generateContent(prompt);
-    const summary = result.response.text();
+    const summary = completion.choices[0]?.message?.content || "";
 
     if (!summary || summary.trim().length === 0) {
       return NextResponse.json(
